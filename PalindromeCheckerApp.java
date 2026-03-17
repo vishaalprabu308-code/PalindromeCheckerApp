@@ -1,4 +1,6 @@
 package PalindromeCheckerApp;
+import java.util.Stack;
+
 public class PalindromeCheckerApp {
 
     // Application constants
@@ -18,6 +20,9 @@ public class PalindromeCheckerApp {
         // UC4: Character Array Based Palindrome Check
         checkPalindromeUsingCharArray();
 
+        // UC5: Stack-Based Palindrome Checker
+        checkPalindromeUsingStack();
+
         // Program continues to next use case or exits
         System.out.println("System initialized successfully.");
     }
@@ -28,7 +33,7 @@ public class PalindromeCheckerApp {
         System.out.println("Version : " + APP_VERSION);
     }
 
-    
+    // UC2: Check and display result for a hardcoded palindrome string
     private static void checkHardcodedPalindrome() {
         String input = "madam";
         boolean result = isPalindrome(input);
@@ -92,6 +97,36 @@ public class PalindromeCheckerApp {
             }
             start++;
             end--;
+        }
+
+        return isPalindrome;
+    }
+
+    // UC5: Check palindrome using Stack data structure
+    private static void checkPalindromeUsingStack() {
+        String input = "noon";
+        boolean result = isPalindromeUsingStack(input);
+        System.out.println("Input: " + input);
+        System.out.println("Is Palindrome? : " + result);
+    }
+
+    // Checks if a string is a palindrome using Stack (LIFO principle)
+    private static boolean isPalindromeUsingStack(String input) {
+        Stack<Character> stack = new Stack<>();
+
+        // Push all characters into the stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        boolean isPalindrome = true;
+
+        // Pop characters and compare with original
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
+                isPalindrome = false;
+                break;
+            }
         }
 
         return isPalindrome;
