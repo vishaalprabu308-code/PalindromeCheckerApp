@@ -42,6 +42,9 @@ public class PalindromeCheckerApp {
         // UC10: Case-Insensitive & Space-Ignored Palindrome
         checkPalindromeWithNormalization();
 
+        // UC11: Object-Oriented Palindrome Service
+        checkPalindromeUsingService();
+
         // Program continues to next use case or exits
         System.out.println("System initialized successfully.");
     }
@@ -299,6 +302,30 @@ public class PalindromeCheckerApp {
             }
         }
 
+        return true;
+    }
+
+    // UC11: Object-oriented service check helper
+    private static void checkPalindromeUsingService() {
+        String input = "racecar";
+        boolean result = palindromeCheckerService(input);
+        System.out.println("Input: " + input);
+        System.out.println("Is palindrome (service)? : " + result);
+    }
+
+    // UC11: Encapsulated palindrome service method
+    // Demonstrates encapsulation and single responsibility principle
+    private static boolean palindromeCheckerService(String text) {
+        if (text == null) return false;
+        int start = 0;
+        int end = text.length() - 1;
+        while (start < end) {
+            if (text.charAt(start) != text.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
         return true;
     }
 }
